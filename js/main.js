@@ -530,6 +530,19 @@
             if (scroller) scroller.scrollTop = 0;
         }
 
+        // Soltar el scroll del fondo. Se llama desde cada vía de cierre y no
+        // solo desde el evento 'close': si ese evento no llegara, la página
+        // se quedaría sin poder desplazarse.
+        function unlock() {
+            document.body.classList.remove('is-locked');
+            if (lastTrigger) { lastTrigger.focus(); lastTrigger = null; }
+        }
+
+        function close() {
+            unlock();
+            dialog.close();
+        }
+
         cards.forEach(function (card) {
             if (!MotoSpecs[card.getAttribute('data-name')]) return;
             var actions = $('.moto-card__actions', card);
@@ -555,21 +568,20 @@
             });
         });
 
-        $('#ficha-close').addEventListener('click', function () { dialog.close(); });
+        $('#ficha-close').addEventListener('click', close);
 
         // Clic en el fondo oscuro
         dialog.addEventListener('click', function (e) {
-            if (e.target === dialog) dialog.close();
+            if (e.target === dialog) close();
         });
 
         // El CTA cierra el modal al abrir WhatsApp o al bajar al formulario
-        elCta.addEventListener('click', function () { dialog.close(); });
+        elCta.addEventListener('click', close);
 
-        // Esc lo maneja <dialog> de forma nativa; aquí solo limpiamos
-        dialog.addEventListener('close', function () {
-            document.body.classList.remove('is-locked');
-            if (lastTrigger) lastTrigger.focus();
-        });
+        // Esc: <dialog> cierra solo y dispara 'cancel' y luego 'close'.
+        // Escuchamos los dos por si alguno no llega.
+        dialog.addEventListener('cancel', unlock);
+        dialog.addEventListener('close', unlock);
     }
 
     /* ========================================================
