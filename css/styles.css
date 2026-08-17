@@ -1144,9 +1144,17 @@ button { cursor: pointer; background: none; border: 0; }
     font-size: var(--fs-sm);
     font-weight: 600;
     box-shadow: var(--sh-lg);
-    transition: transform var(--t);
+    /* El translate no basta para ocultarlo: vacío mide ~28px y asomaba por
+       encima de la barra fija en móvil. visibility/opacity lo ocultan de verdad. */
+    opacity: 0;
+    visibility: hidden;
+    transition: transform var(--t), opacity var(--t), visibility var(--t);
 }
-.toast.is-open { transform: translate(-50%, 0); }
+.toast.is-open {
+    transform: translate(-50%, 0);
+    opacity: 1;
+    visibility: visible;
+}
 
 /* ---------- 18. Reveal ---------- */
 .reveal {
@@ -1203,7 +1211,14 @@ button { cursor: pointer; background: none; border: 0; }
 
     .nav {
         position: fixed;
-        inset: var(--header-h) 0 0;
+        /* El backdrop-filter de .header lo convierte en el bloque contenedor de
+           este fixed, así que `inset: ... 0` medía contra el header (68px) y el
+           menú salía aplastado. Se ancla al header y se le da alto de viewport. */
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+        height: calc(100vh - var(--header-h));
+        height: calc(100dvh - var(--header-h));
         display: block;
         background: #fff;
         padding: 1.5rem var(--gutter) 2.5rem;
@@ -1226,8 +1241,15 @@ button { cursor: pointer; background: none; border: 0; }
     .nav__cta .btn { width: 100%; }
 
     .mobile-bar { display: flex; }
-    .wa-float { bottom: calc(5.5rem + env(safe-area-inset-bottom)); }
-    .cookie { bottom: calc(5.5rem + env(safe-area-inset-bottom)); }
+    /* Los flotantes se apilan sobre la barra fija: barra → WhatsApp → cookies/toast.
+       En móvil el aviso ocupa todo el ancho, así que debe ir por encima del
+       flotante o lo taparía por completo. */
+    .wa-float {
+        bottom: calc(5.5rem + env(safe-area-inset-bottom));
+        z-index: 96;
+    }
+    .cookie,
+    .toast { bottom: calc(9.875rem + env(safe-area-inset-bottom)); }
     /* Deja aire para que la barra fija no tape el final del footer */
     body { padding-bottom: calc(4.75rem + env(safe-area-inset-bottom)); }
 
