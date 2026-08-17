@@ -1,0 +1,22 @@
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Claude Code
+.claude/
+CLAUDE.md
+
+# Docs internos - no publicar
+docs/
+muestra/
+
+# Node (por si se agrega tooling futuro)
+node_modules/
+package-lock.json
