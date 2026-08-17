@@ -46,6 +46,187 @@
     };
 
     /* ========================================================
+       1b. FICHAS TÉCNICAS
+       Datos de referencia del fabricante, por modelo.
+       La clave debe coincidir con el data-name de la tarjeta.
+       'destacados' son los 3 números grandes; 'specs' la tabla.
+       ======================================================== */
+    var MotoSpecs = {
+        'NMAX V3': {
+            destacados: [['155 cc', 'Cilindraje'], ['131 kg', 'Peso'], ['7.1 L', 'Tanque']],
+            specs: [
+                ['Motor', '4 tiempos SOHC, refrigerado por líquido'],
+                ['Potencia máxima', '15.1 Hp a 8.000 rpm'],
+                ['Torque máximo', '13.9 Nm a 6.500 rpm'],
+                ['Transmisión', 'Automática por variador'],
+                ['Freno delantero', 'Disco con ABS'],
+                ['Freno trasero', 'Disco con ABS'],
+                ['Encendido', 'TCI'],
+                ['Llantas (D/T)', '110/70-13 · 130/70-13'],
+                ['Carga máxima', '167 kg']
+            ]
+        },
+        'Aerox 155': {
+            destacados: [['155 cc', 'Cilindraje'], ['116 kg', 'Peso'], ['5.5 L', 'Tanque']],
+            specs: [
+                ['Motor', '155 cc 4T SOHC, refrigerado por líquido, VVA'],
+                ['Potencia máxima', '15.4 Hp a 8.000 rpm'],
+                ['Torque máximo', '13.9 Nm a 6.500 rpm'],
+                ['Transmisión', 'Automática CVT'],
+                ['Freno delantero', 'Disco'],
+                ['Freno trasero', 'Disco']
+            ]
+        },
+        'XTZ 250': {
+            destacados: [['249 cc', 'Cilindraje'], ['153 kg', 'Peso'], ['12 L', 'Tanque']],
+            specs: [
+                ['Motor', 'Monocilíndrico, 4 tiempos, SOHC, 249 cc'],
+                ['Potencia máxima', '21 Hp a 7.500 rpm'],
+                ['Torque máximo', '20.4 Nm a 6.000 rpm'],
+                ['Transmisión', '5 velocidades'],
+                ['Freno delantero', 'Disco 245 mm'],
+                ['Freno trasero', 'Disco 203 mm'],
+                ['Suspensión delantera', 'Horquilla convencional 225 mm'],
+                ['Suspensión trasera', 'Monoamortiguador'],
+                ['Llantas (D/T)', '80/90-21 · 120/80-18']
+            ]
+        },
+        'XTZ 150': {
+            destacados: [['150 cc', 'Cilindraje'], ['130 kg', 'Peso'], ['12 L', 'Tanque']],
+            specs: [
+                ['Motor', '150 cc 4 tiempos SOHC, refrigerado por aire'],
+                ['Transmisión', '5 velocidades'],
+                ['Freno delantero', 'Disco'],
+                ['Freno trasero', 'Tambor']
+            ]
+        },
+        'FZ 250': {
+            destacados: [['249 cc', 'Cilindraje'], ['148 kg', 'Peso'], ['14 L', 'Tanque']],
+            specs: [
+                ['Motor', '249 cc monocilíndrico 4 tiempos, refrigerado por aceite'],
+                ['Potencia máxima', '20.8 Hp a 8.000 rpm'],
+                ['Torque máximo', '20.1 Nm a 6.000 rpm'],
+                ['Transmisión', '5 velocidades'],
+                ['Freno delantero', 'Disco con ABS'],
+                ['Freno trasero', 'Disco']
+            ]
+        },
+        'FZ V3': {
+            destacados: [['149 cc', 'Cilindraje'], ['135 kg', 'Peso'], ['13 L', 'Tanque']],
+            specs: [
+                ['Motor', 'Monocilíndrico, 4 tiempos, SOHC, 149 cc'],
+                ['Potencia máxima', '12.4 Hp a 7.250 rpm'],
+                ['Torque máximo', '13.6 Nm a 5.500 rpm'],
+                ['Transmisión', '5 velocidades'],
+                ['Freno delantero', 'Disco con ABS'],
+                ['Freno trasero', 'Disco'],
+                ['Llantas (D/T)', '100/80-17 · 140/60-17']
+            ]
+        },
+        'Cryptón FI': {
+            destacados: [['115 cc', 'Cilindraje'], ['102 kg', 'Peso'], ['3.8 L', 'Tanque']],
+            specs: [
+                ['Motor', '115 cc monocilíndrico 4 tiempos SOHC, refrigerado por aire'],
+                ['Inyección', 'Electrónica FI'],
+                ['Transmisión', '4 velocidades semiautomática'],
+                ['Freno delantero', 'Disco'],
+                ['Freno trasero', 'Tambor'],
+                ['Rendimiento', '~50 km/L']
+            ]
+        },
+        'MT-09': {
+            destacados: [['890 cc', 'Cilindraje'], ['193 kg', 'Peso'], ['14 L', 'Tanque']],
+            specs: [
+                ['Motor', '890 cc 3 cilindros en línea CP3 DOHC, refrigerado por líquido'],
+                ['Potencia máxima', '119 Hp a 10.000 rpm'],
+                ['Torque máximo', '93 Nm a 7.000 rpm'],
+                ['Transmisión', '6 velocidades'],
+                ['Freno delantero', 'Doble disco 298 mm'],
+                ['Freno trasero', 'Disco 245 mm'],
+                ['Suspensión delantera', 'Horquilla invertida KYB 41 mm'],
+                ['Electrónica', 'Modos de conducción, TCS, quickshifter']
+            ]
+        },
+        'MT-15': {
+            destacados: [['155 cc', 'Cilindraje'], ['138 kg', 'Peso'], ['10 L', 'Tanque']],
+            specs: [
+                ['Motor', '155 cc 4T SOHC, refrigerado por líquido, VVA'],
+                ['Potencia máxima', '18.4 Hp a 10.000 rpm'],
+                ['Torque máximo', '14.1 Nm a 7.500 rpm'],
+                ['Transmisión', '6 velocidades'],
+                ['Freno delantero', 'Disco 282 mm'],
+                ['Freno trasero', 'Disco 220 mm']
+            ]
+        },
+        'R15 V4': {
+            destacados: [['155 cc', 'Cilindraje'], ['140 kg', 'Peso'], ['11 L', 'Tanque']],
+            specs: [
+                ['Motor', '155 cc monocilíndrico, refrigerado por líquido, 4 válvulas, SOHC'],
+                ['Potencia máxima', '18.4 Hp a 10.000 rpm'],
+                ['Torque máximo', '14.2 Nm a 7.500 rpm'],
+                ['Transmisión', '6 velocidades'],
+                ['Frenos', 'Disco delantero y trasero, ABS'],
+                ['Suspensión', 'Horquilla invertida / monoamortiguador'],
+                ['Altura del asiento', '815 mm'],
+                ['Embrague', 'Assist & Slipper Clutch']
+            ]
+        },
+        'XMAX 300': {
+            destacados: [['292 cc', 'Cilindraje'], ['181 kg', 'Peso'], ['13 L', 'Tanque']],
+            specs: [
+                ['Motor', '292 cc monocilíndrico, refrigerado por líquido, 4 válvulas, SOHC, Blue Core'],
+                ['Potencia máxima', '27.6 Hp a 7.250 rpm'],
+                ['Torque máximo', '29.0 Nm a 5.750 rpm'],
+                ['Transmisión', 'Automática CVT'],
+                ['Frenos', 'Doble disco delantero + disco trasero, ABS'],
+                ['Suspensión', 'Horquilla telescópica / doble amortiguador'],
+                ['Altura del asiento', '795 mm'],
+                ['Control de tracción', 'TCS']
+            ]
+        },
+        'MT-07': {
+            destacados: [['689 cc', 'Cilindraje'], ['183 kg', 'Peso'], ['13 L', 'Tanque']],
+            specs: [
+                ['Motor', '689 cc bicilíndrico en paralelo, refrigerado por líquido, DOHC, 8 válvulas'],
+                ['Potencia máxima', '73.4 Hp a 8.750 rpm'],
+                ['Torque máximo', '67.0 Nm a 6.500 rpm'],
+                ['Transmisión', '6 velocidades'],
+                ['Frenos', 'Doble disco delantero + disco trasero, ABS'],
+                ['Suspensión delantera', 'Horquilla invertida 41 mm'],
+                ['Suspensión trasera', 'Monoamortiguador ajustable'],
+                ['Altura del asiento', '805 mm']
+            ]
+        },
+        'XSR900': {
+            destacados: [['890 cc', 'Cilindraje'], ['193 kg', 'Peso'], ['14 L', 'Tanque']],
+            specs: [
+                ['Motor', '890 cc tricilíndrico en línea CP3, refrigerado por líquido, DOHC, 12 válvulas'],
+                ['Potencia máxima', '117.3 Hp a 10.000 rpm'],
+                ['Torque máximo', '93.0 Nm a 7.000 rpm'],
+                ['Transmisión', '6 velocidades con quickshifter'],
+                ['Frenos', 'Doble disco delantero 298 mm + disco trasero, ABS'],
+                ['Suspensión delantera', 'Horquilla invertida 41 mm totalmente ajustable'],
+                ['Suspensión trasera', 'Monoamortiguador ajustable'],
+                ['Altura del asiento', '810 mm'],
+                ['Electrónica', 'Modos de conducción, control de tracción, panel TFT']
+            ]
+        },
+        'TMAX': {
+            destacados: [['562 cc', 'Cilindraje'], ['220 kg', 'Peso'], ['15 L', 'Tanque']],
+            specs: [
+                ['Motor', '562 cc bicilíndrico en paralelo, refrigerado por líquido, DOHC, 8 válvulas'],
+                ['Potencia máxima', '47.6 Hp a 7.500 rpm'],
+                ['Torque máximo', '55.7 Nm a 5.250 rpm'],
+                ['Transmisión', 'Automática con embrague centrífugo'],
+                ['Frenos', 'Doble disco delantero 267 mm + disco trasero, ABS'],
+                ['Suspensión', 'Horquilla invertida 41 mm / monoamortiguador'],
+                ['Altura del asiento', '800 mm'],
+                ['Electrónica', 'TCS, D-Mode, panel TFT, Smart Key']
+            ]
+        }
+    };
+
+    /* ========================================================
        2. Utilidades
        ======================================================== */
     var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
@@ -267,6 +448,131 @@
     }
 
     /* ========================================================
+       7b. Ficha técnica en modal
+       Mejora progresiva: si el navegador no soporta <dialog>,
+       no se inyecta nada y las tarjetas quedan como estaban.
+       ======================================================== */
+    function initFichas() {
+        var dialog = $('#ficha');
+        var cards = $$('#grid-motos .moto-card');
+        if (!dialog || !cards.length || typeof dialog.showModal !== 'function') return;
+
+        var elImg = $('#ficha-img');
+        var elBadge = $('#ficha-badge');
+        var elBrand = $('#ficha-brand');
+        var elName = $('#ficha-name');
+        var elPrice = $('#ficha-price');
+        var elHigh = $('#ficha-highlights');
+        var elSpecs = $('#ficha-specs');
+        var elCta = $('#ficha-cta');
+        var scroller = $('.ficha__scroll', dialog);
+        var lastTrigger = null;
+
+        function text(sel, card) {
+            var el = $(sel, card);
+            return el ? el.textContent.trim() : '';
+        }
+
+        function fill(card) {
+            var data = MotoSpecs[card.getAttribute('data-name')];
+            if (!data) return false;
+
+            var img = $('.moto-card__media img', card);
+            elImg.src = img.currentSrc || img.src;
+            elImg.alt = img.alt;
+
+            elBadge.textContent = text('.moto-card__badge', card);
+            elBrand.textContent = text('.moto-card__brand', card);
+            elName.textContent = text('.moto-card__name', card);
+            elPrice.textContent = text('.moto-card__price b', card);
+
+            elHigh.innerHTML = '';
+            data.destacados.forEach(function (pair) {
+                var li = document.createElement('li');
+                var b = document.createElement('b');
+                var s = document.createElement('span');
+                b.textContent = pair[0];
+                s.textContent = pair[1];
+                li.appendChild(b);
+                li.appendChild(s);
+                elHigh.appendChild(li);
+            });
+
+            elSpecs.innerHTML = '';
+            data.specs.forEach(function (pair) {
+                var row = document.createElement('div');
+                var dt = document.createElement('dt');
+                var dd = document.createElement('dd');
+                row.className = 'ficha__spec';
+                dt.textContent = pair[0];
+                dd.textContent = pair[1];
+                row.appendChild(dt);
+                row.appendChild(dd);
+                elSpecs.appendChild(row);
+            });
+
+            // El CTA hereda el enlace ya resuelto de la tarjeta (wa.me o #contacto)
+            var cardCta = $('.moto-card__actions a[data-wa]', card);
+            if (cardCta) {
+                elCta.href = cardCta.getAttribute('href');
+                if (cardCta.target) { elCta.target = cardCta.target; elCta.rel = cardCta.rel; }
+                else { elCta.removeAttribute('target'); elCta.removeAttribute('rel'); }
+            }
+
+            return true;
+        }
+
+        function open(card, trigger) {
+            if (!fill(card)) return;
+            lastTrigger = trigger || null;
+            document.body.classList.add('is-locked');
+            dialog.showModal();
+            if (scroller) scroller.scrollTop = 0;
+        }
+
+        cards.forEach(function (card) {
+            if (!MotoSpecs[card.getAttribute('data-name')]) return;
+            var actions = $('.moto-card__actions', card);
+            if (!actions) return;
+
+            card.classList.add('moto-card--clickable');
+
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'btn btn--outline btn--sm btn--wide';
+            btn.textContent = 'Ver ficha técnica';
+            btn.setAttribute('aria-haspopup', 'dialog');
+            actions.appendChild(btn);
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                open(card, btn);
+            });
+
+            card.addEventListener('click', function (e) {
+                if (e.target.closest('a, button')) return;   // no robar los clics del CTA
+                open(card, btn);
+            });
+        });
+
+        $('#ficha-close').addEventListener('click', function () { dialog.close(); });
+
+        // Clic en el fondo oscuro
+        dialog.addEventListener('click', function (e) {
+            if (e.target === dialog) dialog.close();
+        });
+
+        // El CTA cierra el modal al abrir WhatsApp o al bajar al formulario
+        elCta.addEventListener('click', function () { dialog.close(); });
+
+        // Esc lo maneja <dialog> de forma nativa; aquí solo limpiamos
+        dialog.addEventListener('close', function () {
+            document.body.classList.remove('is-locked');
+            if (lastTrigger) lastTrigger.focus();
+        });
+    }
+
+    /* ========================================================
        8. Contadores del hero
        ======================================================== */
     function initCounters() {
@@ -436,6 +742,7 @@
         initMenu();
         initScrollSpy();
         initFilters();
+        initFichas();
         initCounters();
         initReveal();
         initForm();

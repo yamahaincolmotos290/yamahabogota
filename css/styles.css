@@ -574,6 +574,185 @@ button { cursor: pointer; background: none; border: 0; }
     grid-column: 1 / -1;
 }
 
+/* ---------- 8b. Ficha técnica (modal) ---------- */
+.moto-card--clickable { cursor: pointer; }
+.moto-card--clickable .moto-card__name { transition: color var(--t-fast); }
+.moto-card--clickable:hover .moto-card__name { color: var(--red); }
+
+.ficha {
+    width: min(94vw, 720px);
+    max-height: min(90vh, 900px);
+    padding: 0;
+    border: none;
+    border-radius: var(--r-lg);
+    background: #fff;
+    color: var(--ink);
+    box-shadow: var(--sh-lg);
+    overflow: hidden;
+}
+.ficha::backdrop {
+    background: rgba(6, 6, 7, .68);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+.ficha[open] { display: flex; flex-direction: column; }
+
+.ficha__scroll { overflow-y: auto; overscroll-behavior: contain; }
+
+.ficha__media {
+    position: relative;
+    width: 100%;
+    height: clamp(190px, 32vh, 320px);
+    /* blanco y no degradado: varias fotos del catálogo traen fondo blanco
+       sólido y sobre el degradado se les nota el recuadro. */
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    /* flex y no grid: con una fila auto, el height:100% de la imagen
+       queda cíclico y el navegador lo trata como auto (se desborda). */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+}
+.ficha__media img { width: 100%; height: 100%; object-fit: contain; }
+
+.ficha__badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: .3125rem .75rem;
+    border-radius: var(--r-pill);
+    background: var(--navy);
+    color: #fff;
+    font-size: .6875rem;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+}
+
+.ficha__close {
+    position: absolute;
+    top: .875rem;
+    right: .875rem;
+    z-index: 3;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border);
+    border-radius: var(--r-pill);
+    background: rgba(255, 255, 255, .92);
+    color: var(--navy);
+    cursor: pointer;
+    transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+}
+.ficha__close:hover { background: var(--red); color: #fff; border-color: var(--red); }
+.ficha__close svg { width: 18px; height: 18px; }
+
+.ficha__body { padding: 1.5rem clamp(1.25rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2rem); }
+
+.ficha__brand {
+    font-size: .6875rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: .375rem;
+}
+.ficha__name {
+    font-size: var(--fs-h3);
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -.02em;
+    line-height: 1.15;
+}
+.ficha__price {
+    margin-top: .5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -.03em;
+}
+.ficha__price small {
+    display: block;
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.ficha__highlights {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .625rem;
+    margin: 1.375rem 0 0;
+}
+.ficha__highlights li {
+    padding: .875rem .75rem;
+    border-radius: var(--r-sm);
+    background: var(--alt);
+    text-align: center;
+}
+.ficha__highlights b {
+    display: block;
+    font-size: 1.0625rem;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -.02em;
+}
+.ficha__highlights span {
+    display: block;
+    margin-top: .1875rem;
+    font-size: .625rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.ficha__specs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 1.75rem;
+    margin: 1.5rem 0 0;
+}
+.ficha__spec {
+    padding: .75rem 0;
+    border-bottom: 1px solid var(--border);
+}
+.ficha__spec dt {
+    font-size: .625rem;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: .1875rem;
+}
+.ficha__spec dd {
+    margin: 0;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--navy);
+}
+
+.ficha__note {
+    margin-top: 1.25rem;
+    font-size: .75rem;
+    line-height: 1.6;
+    color: var(--muted);
+}
+.ficha__cta { margin-top: 1.125rem; }
+
+@media (max-width: 620px) {
+    .ficha__specs { grid-template-columns: 1fr; gap: 0; }
+    .ficha__highlights { gap: .5rem; }
+    .ficha__highlights li { padding: .75rem .5rem; }
+    .ficha__price { font-size: 1.3125rem; }
+}
+
 /* ---------- 9. Banner de financiación ---------- */
 .promo {
     position: relative;
@@ -659,6 +838,9 @@ button { cursor: pointer; background: none; border: 0; }
 }
 .card__link:hover { gap: .75rem; }
 
+/* CTA de WhatsApp dentro de las tarjetas de repuestos */
+.card__cta { margin-top: auto; align-self: flex-start; }
+
 /* Variante oscura (sección respaldo) */
 .section--dark .card {
     background: var(--black-card);
@@ -703,6 +885,7 @@ button { cursor: pointer; background: none; border: 0; }
     font-weight: 600;
     color: var(--navy);
 }
+.service__cta { margin-top: 1.25rem; }
 
 /* ---------- 12. FAQ ---------- */
 .faq { max-width: 48rem; margin-inline: auto; display: grid; gap: .875rem; }
